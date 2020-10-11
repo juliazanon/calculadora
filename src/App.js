@@ -142,12 +142,12 @@ class App extends React.Component {
         <div className="box-calc">
           <Input input={this.state.input2}></Input>
           <Input input={this.state.input}></Input>
-          <div id="operacoes" className="linha">
+          {/* <div id="operacoes" className="linha">
             <Botao handleClick={this.acoesMemoriaGeral}> MC </Botao>
             <Botao handleClick={this.acoesMemoriaGeral}> MR </Botao>
             <Botao handleClick={this.acoesMemoriaGeral}> M+ </Botao>
             <Botao handleClick={this.acoesMemoriaGeral}> MS </Botao>
-          </div>
+          </div> */}
           <div id="operacoes" className="linha">
             <Botao handleClick={this.escreverInput}> + </Botao>
             <Botao handleClick={this.escreverInput}> - </Botao>
@@ -178,7 +178,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <div className="box-memoria">
+        {/* <div className="box-memoria">
           <h1>Memória</h1>
           <div className="linha">
             <Input memoria1={this.state.memoria1} id="input-memoria"></Input>
@@ -200,7 +200,7 @@ class App extends React.Component {
             <Botao handleClick={this.acoesMemoria4}> MC </Botao>
             <Botao handleClick={this.acoesMemoria4}> MR </Botao>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
