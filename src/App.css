@@ -28,8 +28,20 @@ div#bloco {
   width: 100%;
 }
 
-Input#input-memoria {
+.box-memoria {
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.acoes-memoria {
   display:flex;
-  width: 100%;
+  width: 50%;
+}
+
+.input-memoria {
+  display: flex;
+  width: 50%;
 }
 
