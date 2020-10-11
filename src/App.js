@@ -213,7 +213,7 @@ class App extends React.Component {
 
     // Adicionar uma unidade na memória atual
     if (val === "M+") {
-      if (this.state.memoriaAtual == 0) {
+      if (this.state.memoriaAtual === 0) {
         this.setState({
           memoria1: 1,
           memoriaAtual: 1});
