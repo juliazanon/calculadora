@@ -108,37 +108,73 @@ class App extends React.Component {
   }
 
   calcular = () => {
-    this.setState(state => ({
-      input: math.evaluate(this.state.input2),
+    try {
+      this.setState(state => ({input: math.evaluate(this.state.input2)}));
+    }
+    // se digitar apenas um número e um operador, fazer a conta com dois do mesmo número
+    catch (error) {
+      const expressao = this.state.input2 + this.state.input;
+      this.setState(state => ({input: math.evaluate(expressao)}));
+    }
+    finally {
+      this.setState({input: 'erro'});
+    }
+    this.setState({
       calculado: true,
       decimal: false,
-      digitar_junto: false}));
+      digitar_junto: false});
   }
 
   acoesMemoriaGeral = val => {
     // Adicionar número na memória
     if (val === "M+") {
-      if (this.state.memoriaAtual === 0 || this.state.memoriaAtual === 4)
-      {
+      if (this.state.memoria1 === "") {
         this.setState(state => ({
           memoria1: this.state.input,
           memoriaAtual: 1}));
       }
-      if (this.state.memoriaAtual === 1)
-      {
-        this.setState(state => ({
-          memoria2: this.state.input,
-          memoriaAtual: 2}));
-      }
-      if (this.state.memoriaAtual === 3) {
-        this.setState(state => ({
-          memoria3: this.state.input,
-          memoriaAtual: 3}));
-      }
       else {
-        this.setState(state => ({
-          memoria4: this.state.input,
-          memoriaAtual: 4}));
+        if (this.state.memoria2 === "") {
+          this.setState(state => ({
+            memoria2: this.state.input,
+            memoriaAtual: 2}));
+        }
+        else {
+          if (this.state.memoria3 === "") {
+            this.setState(state => ({
+              memoria3: this.state.input,
+              memoriaAtual: 3}));
+          }
+          else {
+            if (this.state.memoria4 === "") {
+              this.setState(state => ({
+                memoria4: this.state.input,
+                memoriaAtual: 4}));
+            }
+            else {
+              if (this.state.memoriaAtual === 0 || this.state.memoriaAtual === 4) {
+                this.setState(state => ({
+                  memoria1: this.state.input,
+                  memoriaAtual: 1}));
+              }
+              if (this.state.memoriaAtual === 1) {
+                this.setState(state => ({
+                  memoria2: this.state.input,
+                  memoriaAtual: 2}));
+              }
+              if (this.state.memoriaAtual === 2) {
+                this.setState(state => ({
+                  memoria3: this.state.input,
+                  memoriaAtual: 3}));
+              }
+              if (this.state.memoriaAtual === 3) {
+                this.setState(state => ({
+                  memoria4: this.state.input,
+                  memoriaAtual: 4}));
+              }
+            }
+          }
+        }
       }
     }
     // Apagar toda a memória
@@ -174,22 +210,67 @@ class App extends React.Component {
           input2: this.state.memoria4}));
       }
     }
+
+    // Salva registro
+    if (val === "MS") {
+      
+    }
   }
 
-  acoesMemoria1 = (val) => {
-
+  acoesMemoria1 = val => {
+    if (val === "MR") {
+      if (this.state.memoria1 === "") {}
+      else {
+        this.setState(state => ({
+          input: this.state.memoria1,
+          input2: this.state.memoria1}));
+      }
+    }
+    else {
+      this.setState({memoria1: ""});
+    }
   }
 
-  acoesMemoria2 = (val) => {
-
+  acoesMemoria2 = val => {
+    if (val === "MR") {
+      if (this.state.memoria2 === "") {}
+      else {
+        this.setState(state => ({
+          input: this.state.memoria2,
+          input2: this.state.memoria2}));
+      }
+    }
+    else {
+      this.setState({memoria2: ""});
+    }
   }
 
-  acoesMemoria3 = (val) => {
-
+  acoesMemoria3 = val => {
+    if (val === "MR") {
+      if (this.state.memoria3 === "") {}
+      else {
+        this.setState(state => ({
+          input: this.state.memoria3,
+          input2: this.state.memoria3}));
+      }
+    }
+    else {
+      this.setState({memoria3: ""});
+    }
   }
 
-  acoesMemoria4 = (val) => {
-
+  acoesMemoria4 = val => {
+    if (val === "MR") {
+      if (this.state.memoria4 === "") {}
+      else {
+        this.setState(state => ({
+          input: this.state.memoria4,
+          input2: this.state.memoria4}));
+      }
+    }
+    else {
+      this.setState({memoria4: ""});
+    }
   }
 
   render() {
