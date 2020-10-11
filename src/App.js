@@ -17,9 +17,10 @@ class App extends React.Component {
       operador: false,
       digitar_junto: true,
       memoria1: "",
-      memorai2: "",
+      memoria2: "",
       memoria3: "",
-      memoria4: ""
+      memoria4: "",
+      memoriaAtual: 0
     };
   }
 
@@ -115,9 +116,63 @@ class App extends React.Component {
   }
 
   acoesMemoriaGeral = val => {
-    // Se for MC
+    // Adicionar número na memória
+    if (val === "M+") {
+      if (this.state.memoriaAtual === 0 || this.state.memoriaAtual === 4)
+      {
+        this.setState(state => ({
+          memoria1: this.state.input,
+          memoriaAtual: 1}));
+      }
+      if (this.state.memoriaAtual === 1)
+      {
+        this.setState(state => ({
+          memoria2: this.state.input,
+          memoriaAtual: 2}));
+      }
+      if (this.state.memoriaAtual === 3) {
+        this.setState(state => ({
+          memoria3: this.state.input,
+          memoriaAtual: 3}));
+      }
+      else {
+        this.setState(state => ({
+          memoria4: this.state.input,
+          memoriaAtual: 4}));
+      }
+    }
+    // Apagar toda a memória
+    if (val === "MC") {
+      this.setState({
+        memoria1: "",
+        memoria2: "",
+        memoria3: "",
+        memoria4: "",
+        memoriaAtual: 0
+      });
+    }
+    //Recuperar o último valor
     if (val === "MR") {
-      this.setState(state => ({memoria1: this.state.input}));
+      if (this.state.memoriaAtual === 1) {
+        this.setState(state => ({
+          input: this.state.memoria1,
+          input2: this.state.memoria1}));
+      }
+      if (this.state.memoriaAtual === 2) {
+        this.setState(state => ({
+          input: this.state.memoria2,
+          input2: this.state.memoria2}));
+      }
+      if (this.state.memoriaAtual === 3) {
+        this.setState(state => ({
+          input: this.state.memoria3,
+          input2: this.state.memoria3}));
+      }
+      if (this.state.memoriaAtual === 4) {
+        this.setState(state => ({
+          input: this.state.memoria4,
+          input2: this.state.memoria4}));
+      }
     }
   }
 
@@ -172,7 +227,7 @@ class App extends React.Component {
               <Botao handleClick={this.escreverInput}>9</Botao>
               <Botao handleClick={this.escreverInput}>6</Botao>
               <Botao handleClick={this.escreverInput}>3</Botao>
-              <BotaoAC handleClear={() => this.setState({input: "", input2: "", calculado: 'false', decimal: 'false', operador: 'false'})}>AC</BotaoAC>
+              <BotaoAC handleClear={() => this.setState({input: "", calculado: 'false', decimal: 'false', operador: 'false'})}>AC</BotaoAC>
             </div>
             <div id="igual" className="coluna">
               <Botao handleClick={this.calcular}>=</Botao>
@@ -183,38 +238,38 @@ class App extends React.Component {
           <h1>Memória</h1>
           <div className="coluna">
             <div className="input-memoria">
-              <Input memoria1={this.state.memoria1}></Input>
+              <Input input={this.state.memoria1}></Input>
             </div>
             <div className="acoes-memoria">
-              <Botao handleClick={this.acoesMemoria1}> MC </Botao>
-              <Botao handleClick={this.acoesMemoria1}> MR </Botao>
+              <Botao handleClick={this.acoesMemoria1}>MC</Botao>
+              <Botao handleClick={this.acoesMemoria1}>MR</Botao>
             </div>
           </div>
           <div className="coluna">
             <div className="input-memoria">
-              <Input memoria2={this.state.memoria2}></Input>
+              <Input input={this.state.memoria2}></Input>
             </div>
             <div className="acoes-memoria">
-              <Botao handleClick={this.acoesMemoria2}> MC </Botao>
-              <Botao handleClick={this.acoesMemoria2}> MR </Botao>
+              <Botao handleClick={this.acoesMemoria2}>MC</Botao>
+              <Botao handleClick={this.acoesMemoria2}>MR</Botao>
             </div>
           </div>
           <div className="coluna">
             <div className="input-memoria">
-              <Input memoria3={this.state.memoria3}></Input>
+              <Input input={this.state.memoria3}></Input>
             </div>
             <div className="acoes-memoria">
-              <Botao handleClick={this.acoesMemoria3}> MC </Botao>
-              <Botao handleClick={this.acoesMemoria3}> MR </Botao>
+              <Botao handleClick={this.acoesMemoria3}>MC</Botao>
+              <Botao handleClick={this.acoesMemoria3}>MR</Botao>
             </div>
           </div>
           <div className="coluna">
             <div className="input-memoria">
-              <Input memoria4={this.state.memoria4}></Input>
+              <Input input={this.state.memoria4}></Input>
             </div>
             <div className="acoes-memoria">
-              <Botao handleClick={this.acoesMemoria4}> MC </Botao>
-              <Botao handleClick={this.acoesMemoria4}> MR </Botao>
+              <Botao handleClick={this.acoesMemoria4}>MC</Botao>
+              <Botao handleClick={this.acoesMemoria4}>MR</Botao>
             </div>
           </div>
         </div>
