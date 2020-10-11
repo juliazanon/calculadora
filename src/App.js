@@ -15,7 +15,11 @@ class App extends React.Component {
       calculado: false,
       decimal: false,
       operador: false,
-      digitar_junto: true
+      digitar_junto: true,
+      memoria1: "",
+      memorai2: "",
+      memoria3: "",
+      memoria4: ""
     };
   }
 
@@ -110,23 +114,26 @@ class App extends React.Component {
       digitar_junto: false}));
   }
 
-  acoesMemoriaGeral = (val, ) => {
+  acoesMemoriaGeral = val => {
+    // Se for MC
+    if (val === "MR") {
+      this.setState(state => ({memoria1: this.state.input}));
+    }
+  }
+
+  acoesMemoria1 = (val) => {
 
   }
 
-  acoesMemoria1 = (val, ) => {
+  acoesMemoria2 = (val) => {
 
   }
 
-  acoesMemoria2 = (val, ) => {
+  acoesMemoria3 = (val) => {
 
   }
 
-  acoesMemoria3 = (val, ) => {
-
-  }
-
-  acoesMemoria4 = (val, ) => {
+  acoesMemoria4 = (val) => {
 
   }
 
@@ -137,10 +144,10 @@ class App extends React.Component {
           <Input input={this.state.input2}></Input>
           <Input input={this.state.input}></Input>
           <div id="operacoes" className="linha">
-            <Botao handleClick={this.acoesMemoriaGeral}> MC </Botao>
-            <Botao handleClick={this.acoesMemoriaGeral}> MR </Botao>
-            <Botao handleClick={this.acoesMemoriaGeral}> M+ </Botao>
-            <Botao handleClick={this.acoesMemoriaGeral}> MS </Botao>
+            <Botao handleClick={this.acoesMemoriaGeral}>MC</Botao>
+            <Botao handleClick={this.acoesMemoriaGeral}>MR</Botao>
+            <Botao handleClick={this.acoesMemoriaGeral}>M+</Botao>
+            <Botao handleClick={this.acoesMemoriaGeral}>MS</Botao>
           </div>
           <div id="operacoes" className="linha">
             <Botao handleClick={this.escreverInput}> + </Botao>
@@ -174,7 +181,7 @@ class App extends React.Component {
         </div>
         <div className="box-memoria">
           <h1>Memória</h1>
-          <div className="linha">
+          <div className="coluna">
             <div className="input-memoria">
               <Input memoria1={this.state.memoria1}></Input>
             </div>
@@ -183,7 +190,7 @@ class App extends React.Component {
               <Botao handleClick={this.acoesMemoria1}> MR </Botao>
             </div>
           </div>
-          <div className="linha">
+          <div className="coluna">
             <div className="input-memoria">
               <Input memoria2={this.state.memoria2}></Input>
             </div>
@@ -192,7 +199,7 @@ class App extends React.Component {
               <Botao handleClick={this.acoesMemoria2}> MR </Botao>
             </div>
           </div>
-          <div className="linha">
+          <div className="coluna">
             <div className="input-memoria">
               <Input memoria3={this.state.memoria3}></Input>
             </div>
@@ -201,7 +208,7 @@ class App extends React.Component {
               <Botao handleClick={this.acoesMemoria3}> MR </Botao>
             </div>
           </div>
-          <div className="linha">
+          <div className="coluna">
             <div className="input-memoria">
               <Input memoria4={this.state.memoria4}></Input>
             </div>
