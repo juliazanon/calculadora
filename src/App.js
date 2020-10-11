@@ -108,17 +108,7 @@ class App extends React.Component {
   }
 
   calcular = () => {
-    try {
-      this.setState(state => ({input: math.evaluate(this.state.input2)}));
-    }
-    // se digitar apenas um número e um operador, fazer a conta com dois do mesmo número
-    catch (error) {
-      const expressao = this.state.input2 + this.state.input;
-      this.setState(state => ({input: math.evaluate(expressao)}));
-    }
-    finally {
-      this.setState({input: 'erro'});
-    }
+    this.setState(state => ({input: math.evaluate(this.state.input2)}));
     this.setState({
       calculado: true,
       decimal: false,
