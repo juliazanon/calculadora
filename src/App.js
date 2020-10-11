@@ -126,8 +126,8 @@ class App extends React.Component {
   }
 
   acoesMemoriaGeral = val => {
-    // Adicionar número na memória
-    if (val === "M+") {
+    // salvar número na memória
+    if (val === "MS") {
       if (this.state.memoria1 === "") {
         this.setState(state => ({
           memoria1: this.state.input,
@@ -211,9 +211,27 @@ class App extends React.Component {
       }
     }
 
-    // Salva registro
-    if (val === "MS") {
-      
+    // Adicionar uma unidade na memória atual
+    if (val === "M+") {
+      if (this.state.memoriaAtual == 0) {
+        this.setState({
+          memoria1: 1,
+          memoriaAtual: 1});
+      }
+      else {
+        if (this.state.memoriaAtual === 1) {
+          this.setState(state => ({memoria1: parseFloat(this.state.memoria1) + 1}));
+        }
+        if (this.state.memoriaAtual === 2) {
+          this.setState(state => ({memoria2: parseFloat(this.state.memoria2) + 1}));
+        }
+        if (this.state.memoriaAtual === 3) {
+          this.setState(state => ({memoria3: parseFloat(this.state.memoria3) + 1}));
+        }
+        if (this.state.memoriaAtual === 4) {
+          this.setState(state => ({memoria4: parseFloat(this.state.memoria4) + 1}));
+        }
+      }
     }
   }
 
